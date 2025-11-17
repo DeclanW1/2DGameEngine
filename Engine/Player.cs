@@ -5,14 +5,28 @@ namespace MiniGame.Engine
 {
     public class Player : GameObject
     {
+        public Texture2D Texture;
+
         public override void Update(GameTime gameTime)
         {
-            //Movement here-- will add later
+            // Movement will be added later
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //Rendering here-- will add later
+            if (Texture != null)
+            {
+                spriteBatch.Draw(
+                    Texture,
+                    new Rectangle(
+                        (int)Position.X,
+                        (int)Position.Y,
+                        (int)Size.X,
+                        (int)Size.Y
+                    ),
+                    Color.White
+                );
+            }
         }
     }
 }

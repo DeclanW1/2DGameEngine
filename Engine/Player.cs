@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace MiniGame.Engine
 {
@@ -9,7 +10,23 @@ namespace MiniGame.Engine
 
         public override void Update(GameTime gameTime)
         {
-            // Movement will be added later
+            //WASD arrow key movement for the player
+            var keyboard = Keyboard.GetState();
+
+            float speed = 200f; // pixels per second
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (keyboard.IsKeyDown(Keys.W) || keyboard.IsKeyDown(Keys.Up))
+                Position.Y -= speed * dt;
+
+            if (keyboard.IsKeyDown(Keys.S) || keyboard.IsKeyDown(Keys.Down))
+                Position.Y += speed * dt;
+
+            if (keyboard.IsKeyDown(Keys.A) || keyboard.IsKeyDown(Keys.Left))
+                Position.X -= speed * dt;
+
+            if (keyboard.IsKeyDown(Keys.D) || keyboard.IsKeyDown(Keys.Right))
+                Position.X += speed * dt;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

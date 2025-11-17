@@ -31,3 +31,4 @@
 /Users/dec/Dev/EngineDemo/obj/Debug/net9.0/EngineDemo.pdb
 /Users/dec/Dev/EngineDemo/obj/Debug/net9.0/EngineDemo.genruntimeconfig.cache
 /Users/dec/Dev/EngineDemo/obj/Debug/net9.0/ref/EngineDemo.dll
+/Users/dec/Dev/EngineDemo/obj/Debug/net9.0/EngineDemo.sourcelink.json

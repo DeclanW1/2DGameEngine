@@ -46,6 +46,25 @@ namespace EngineDemo
 
             //Gives the texture to the player
             _player.Texture = _pixel;
+
+
+            //TEST WALLS
+            var wall1 = new Wall(
+                _pixel,
+                new Vector2(200f, 150f),   // position
+                new Vector2(200f, 20f),    // width + height
+                Color.DarkGray
+            );
+            _world.Add(wall1);
+
+            var wall2 = new Wall(
+                _pixel,
+                new Vector2(80f, 220f),
+                new Vector2(20f, 200f),
+                Color.DarkGray
+            );
+            _world.Add(wall2);
+            //TEST WALLS   
         }
 
         protected override void Update(GameTime gameTime)

@@ -47,24 +47,112 @@ namespace EngineDemo
             //Gives the texture to the player
             _player.Texture = _pixel;
 
-
-            //TEST WALLS
+            //---------------------------------------------------------------------------------------
+            //GAME WALLS -- Used ChatGPT to create me a wall layout
             var wall1 = new Wall(
                 _pixel,
-                new Vector2(200f, 150f),   // position
-                new Vector2(200f, 20f),    // width + height
+                new Vector2(40f, 40f),     // top wall
+                new Vector2(720f, 20f),
                 Color.DarkGray
             );
             _world.Add(wall1);
 
             var wall2 = new Wall(
                 _pixel,
-                new Vector2(80f, 220f),
-                new Vector2(20f, 200f),
+                new Vector2(40f, 420f),    // bottom wall
+                new Vector2(720f, 20f),
                 Color.DarkGray
             );
             _world.Add(wall2);
-            //TEST WALLS   
+
+            var wall3 = new Wall(
+                _pixel,
+                new Vector2(40f, 40f),     // left wall
+                new Vector2(20f, 400f),
+                Color.DarkGray
+            );
+            _world.Add(wall3);
+
+            var wall4 = new Wall(
+                _pixel,
+                new Vector2(740f, 40f),    // right wall
+                new Vector2(20f, 400f),
+                Color.DarkGray
+            );
+            _world.Add(wall4);
+
+            // Central horizontal wall
+            var wall5 = new Wall(
+                _pixel,
+                new Vector2(200f, 220f),
+                new Vector2(400f, 20f),
+                Color.DarkGray
+            );
+            _world.Add(wall5);
+
+            // Short vertical wall above center
+            var wall6 = new Wall(
+                _pixel,
+                new Vector2(380f, 140f),
+                new Vector2(20f, 80f),
+                Color.DarkGray
+            );
+            _world.Add(wall6);
+
+            // Short vertical wall below center
+            var wall7 = new Wall(
+                _pixel,
+                new Vector2(380f, 240f),
+                new Vector2(20f, 80f),
+                Color.DarkGray
+            );
+            _world.Add(wall7);
+
+            // Left-side vertical wall
+            var wall8 = new Wall(
+                _pixel,
+                new Vector2(140f, 120f),
+                new Vector2(20f, 200f),
+                Color.DarkGray
+            );
+            _world.Add(wall8);
+
+            // Right-side vertical wall
+            var wall9 = new Wall(
+                _pixel,
+                new Vector2(640f, 120f),
+                new Vector2(20f, 200f),
+                Color.DarkGray
+            );
+            _world.Add(wall9);
+
+            // Small block in top-left area
+            var wall10 = new Wall(
+                _pixel,
+                new Vector2(200f, 100f),
+                new Vector2(80f, 20f),
+                Color.DarkGray
+            );
+            _world.Add(wall10);
+
+            // Small block in bottom-left area
+            var wall11 = new Wall(
+                _pixel,
+                new Vector2(200f, 340f),
+                new Vector2(80f, 20f),
+                Color.DarkGray
+            );
+            _world.Add(wall11);
+
+            // Small block in bottom-right area
+            var wall12 = new Wall(
+                _pixel,
+                new Vector2(560f, 340f),
+                new Vector2(80f, 20f),
+                Color.DarkGray
+            );
+            _world.Add(wall12);                   
+            //WALLS   
         }
 
         protected override void Update(GameTime gameTime)

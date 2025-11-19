@@ -26,6 +26,7 @@ namespace MiniGame.Engine
             }
 
             HandlePlayerWallCollisions();
+            HandleBouncerWallCollisions();
         }
 
         //draw all the active objects
@@ -65,7 +66,7 @@ namespace MiniGame.Engine
             }
         }
 
-        //Push the player out of any wall they overlap
+        //push the player out of any wall they overlap
         private void ResolveCollision(Player player, Wall wall)
         {
             Rectangle p = ToRect(player);
@@ -100,6 +101,74 @@ namespace MiniGame.Engine
                     player.Position.Y -= overlapY;
                 else
                     player.Position.Y += overlapY;
+            }
+        }
+
+        // COLLISIONS -- Bouncer + Wall
+        private void HandleBouncerWallCollisions()
+        {
+            var bouncers = new List<Bouncer>();
+            var walls = new List<Wall>();
+
+            foreach (var obj in _objects)
+            {
+                if (obj is Bouncer b)
+                    bouncers.Add(b);
+                else if (obj is Wall w)
+                    walls.Add(w);
+            }
+
+            foreach (var bouncer in bouncers)
+            {
+                foreach (var wall in walls)
+                {
+                    ResolveBouncerCollision(bouncer, wall);
+                }
+            }
+        }
+
+        //pushes the bouncer off any wall it overlaps and flips its velocity
+        private void ResolveBouncerCollision(Bouncer bouncer, Wall wall)
+        {
+            Rectangle b = ToRect(bouncer);
+            Rectangle w = ToRect(wall);
+
+            if (!b.Intersects(w))
+                return;
+
+            Vector2 bCenter = new Vector2(b.Center.X, b.Center.Y);
+            Vector2 wCenter = new Vector2(w.Center.X, w.Center.Y);
+
+            float dx = bCenter.X - wCenter.X;
+            float dy = bCenter.Y - wCenter.Y;
+
+            float overlapX = (b.Width / 2f + w.Width / 2f) - Math.Abs(dx);
+            float overlapY = (b.Height / 2f + w.Height / 2f) - Math.Abs(dy);
+
+            if (overlapX <= 0 || overlapY <= 0)
+                return;
+
+            if (overlapX < overlapY)
+            {
+                if (dx < 0)
+                    bouncer.Position.X -= overlapX;
+                else
+                    bouncer.Position.X += overlapX;
+
+                var v = bouncer.Velocity;
+                v.X *= -1;
+                bouncer.Velocity = v;
+            }
+            else
+            {
+                if (dy < 0)
+                    bouncer.Position.Y -= overlapY;
+                else
+                    bouncer.Position.Y += overlapY;
+
+                var v = bouncer.Velocity;
+                v.Y *= -1;
+                bouncer.Velocity = v;
             }
         }
 

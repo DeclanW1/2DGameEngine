@@ -144,7 +144,7 @@ namespace EngineDemo
             );
             _world.Add(wall11);
 
-            // Small block in bottom-right area
+            //small block in bottom-right area
             var wall12 = new Wall(
                 _pixel,
                 new Vector2(560f, 340f),
@@ -152,7 +152,18 @@ namespace EngineDemo
                 Color.DarkGray
             );
             _world.Add(wall12);                   
-            //WALLS   
+            //WALLS
+
+            //bouncer- moving object in game
+            var bouncer = new Bouncer(
+                _pixel,
+                new Vector2(400f, 240f),      //start position - centre-ish of the map
+                new Vector2(24f, 24f),        //size of square
+                new Vector2(150f, 120f),      //velocity (x,y)
+                Color.OrangeRed               //colour
+            );
+            _world.Add(bouncer);
+
         }
 
         protected override void Update(GameTime gameTime)
